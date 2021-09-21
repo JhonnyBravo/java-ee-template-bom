@@ -1,7 +1,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
-    id 'eclipse'
+    id 'eclipse-wtp'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'maven-publish'
 }
@@ -14,7 +14,22 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependency 'gnu.getopt:java-getopt:1.0.13'
+        dependencySet(group: 'org.apache.tomcat.embed', version: '8.5.2'){
+            entry 'tomcat-embed-core'
+            entry 'tomcat-embed-logging-juli'
+            entry 'tomcat-embed-jasper'
+        }
+
+        dependencySet(group: 'org.apache.tomcat', version: '8.5.2'){
+            entry 'tomcat-servlet-api'
+            entry 'tomcat-jsp-api'
+        }
+
+        dependency 'taglibs:standard:1.1.2'
+        dependency 'javax.servlet.jsp.jstl:jstl:1.2'
+        dependency 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.2'
+        dependency 'mysql:mysql-connector-java:8.0.22'
+        dependency 'org.mybatis:mybatis:3.5.6'
         dependency 'ch.qos.logback:logback-classic:1.2.6'
         dependency 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
         dependency 'org.glassfish:jakarta.el:4.0.2'
@@ -22,14 +37,13 @@ dependencyManagement {
     }
 }
 
-
 group='com.github.JhonnyBravo'
-version='master-SNAPSHOT'
+version='tomcat-SNAPSHOT'
 
 publishing{
     publications{
         mavenJava(MavenPublication){
-            artifactId='java-se-template-bom'
+            artifactId='java-ee-template-bom'
             versionMapping{
                 usage('java-api'){
                     fromResolutionOf('runtimeClasspath')
@@ -39,9 +53,9 @@ publishing{
                 }
             }
             pom{
-                name='java-se-template-bom'
-                description='Java SE プロジェクト用の BOM プロジェクト'
-                url='https://github.com/JhonnyBravo/java-se-template-bom'
+                name='java-ee-template-bom'
+                description='Java EE プロジェクト用の BOM プロジェクト'
+                url='https://github.com/JhonnyBravo/java-ee-template-bom'
             }
         }
     }

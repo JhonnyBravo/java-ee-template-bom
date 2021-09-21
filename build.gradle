@@ -38,7 +38,7 @@ dependencyManagement {
 }
 
 group='com.github.JhonnyBravo'
-version='tomcat-SNAPSHOT'
+version='master-SNAPSHOT'
 
 publishing{
     publications{

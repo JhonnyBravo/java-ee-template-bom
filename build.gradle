@@ -14,13 +14,13 @@ repositories {
 
 dependencyManagement {
     dependencies {
-        dependencySet(group: 'org.apache.tomcat.embed', version: '8.5.2'){
+        dependencySet(group: 'org.apache.tomcat.embed', version: '10.0.13'){
             entry 'tomcat-embed-core'
             entry 'tomcat-embed-logging-juli'
             entry 'tomcat-embed-jasper'
         }
 
-        dependencySet(group: 'org.apache.tomcat', version: '8.5.2'){
+        dependencySet(group: 'org.apache.tomcat', version: '10.0.13'){
             entry 'tomcat-servlet-api'
             entry 'tomcat-jsp-api'
         }
